@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+</head>
+<body class="bg-zinc-900 h-screen w-full p-5">
+    <div class="bg-zinc-600 text-zinc-200 font-mono h-2/3 flex flex-col  w-2/4 ">
+
+        <div class="text-center flex h-2/4 ">
+
+            <div class="w-1/4 p-5 bg-zinc-500">
+                <div id="h0_Wr">WinRate<div>58%</div></div>
+                <div id="h0_name">Jugger</div>
+            </div>
+            <div class="w-2/4  p-5 bg-blue-500">
+                <div id="h1_Wr" >WinRate<div>58%</div></div>
+                <div id="h1_name">Jugger</div>
+            </div>
+            <div class="w-1/4   p-5 bg-red-500">
+                <div id="h2_Wr" >WinRate<div>58%</div></div>
+                <div id="h2_name">Jugger</div>
+            </div>
+        </div>
+    
+        <div class=" p-5 ">
+            <div id="user_name_main" class="p-5 text-2xl text-center"><Loading class="">Loading...</Loading></div>
+            <div id="tot_user_match" class="flex" ><span class=""></span></div>
+            <div id="tot_user_win" class="flex" >Loading...</div>
+            <div id="tot_user_lose" class="flex" >Loading...</div>
+            <div id="tot_user_wr" class="flex" >Loading...</div>
+        </div>
+
+        <label for="pl">Player:</label>
+        <select id="players" name="players">
+          <option selected value="me">Me</option>
+          <option value="renk">renk</option>
+          <option value="barrio">Barrio</option>
+          <option value="loco">Loco</option>
+        </select>
+    </div>
+
+    <div>
+
+        
+    </div>
+    
+<script src="function.js"></script>
+<script src="api.js"></script>
+</body>
+</html>

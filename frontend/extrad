@@ -1,0 +1,33 @@
+ data, 
+    as,
+    de,
+    dur,
+    game_mode,
+    hero_id,
+    kills,
+    kiter,
+    match_id,
+    p_size,
+    player_slot, 
+    radi_win,
+    skill, 
+    start_t,
+    version
+
+
+    console.log((movingAvg(SpliteArr(100,JSON.parse(GetkdaRatio)))))
+
+
+     for ( x of data){
+      //remove leaver
+      if (x.duration > 600) {
+          newArr.push(x)
+        }
+      }
+    
+    for ( x of newArr){
+      if (x.)
+    }  
+
+
+
