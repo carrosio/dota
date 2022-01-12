@@ -10,6 +10,11 @@ h0_name = document.getElementById("h0_name");
 h1_name = document.getElementById("h1_name");
 h2_name = document.getElementById("h2_name");
 
+h0_pic = document.getElementById("h0_pic");
+h1_pic  = document.getElementById("h1_pic");
+h2_pic  = document.getElementById("h2_pic");
+
+
 // dash user stats general
 
 let user_name_main, tot_user_win, tot_user_lose, tot_user_wr, tot_user_match;
@@ -45,9 +50,9 @@ function MatchFilter(data, Minduration, leaver, ranked) {
   
   for (x of data) {
     if (
-      x.duration > 600 &&
-      x.leaver_status == 0 &&
-      x.lobby_type == 7
+      x.duration > Minduration &&
+      x.leaver_status == leaver &&
+      x.lobby_type == ranked
       )
     {
       newArr.push(x)
@@ -85,13 +90,13 @@ function UserHeroList(data, heros){
           "count": counts[i] ? counts[i]: 0,
           "name": y.localized_name,
           "roles": y.roles,
-          "atk": y. primary_attr,
+          "img": `${baseDota}${y.img}`
         })
       }
     }
   }
 
-  console.log(totalHeroInfo)
+  
   return totalHeroInfo
 }
   
@@ -132,6 +137,10 @@ function showTop3(data){
   h0_name.innerHTML = sortedData[2].name
   h1_name.innerHTML = sortedData[0].name
   h2_name.innerHTML = sortedData[1].name  
+
+  h0_pic.style.backgroundImage = `url("${sortedData[2].img}")`;
+  h1_pic.style.backgroundImage = `url("${sortedData[0].img}")`;
+  h2_pic.style.backgroundImage = `url("${sortedData[1].img}")`;
 }
 
 
@@ -185,7 +194,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
   let nameUsr = (await getJSONData(`${baseURL}/players/${user}`)).data;
   let newHeroList = (await getJSONData(`${heroList}`)).data
   let rawData = (await getJSONData(matchHistory)).data;
-  let dataFiltered = MatchFilter(rawData);
+  let dataFiltered = MatchFilter(rawData, 600, 0, 0);
   /* console.log(dataFiltered[0]) */
 
 
@@ -199,7 +208,8 @@ document.addEventListener("DOMContentLoaded", async function (e) {
 
   total(dataFiltered, kdaRAvg);
   UserNme(nameUsr);
-  showTop3(UserHeroList(rawData, newHeroList))
+ 
+  showTop3(UserHeroList(dataFiltered, newHeroList))
 
  
 

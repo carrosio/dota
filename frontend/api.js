@@ -8,11 +8,11 @@ const colo = "163395256";
 const loco = "71567093";
 const dendi = '70388657'
 
-let user = neon;
+let user = loco;
 
 const baseURL = "https://api.opendota.com/api";
 const baseDota = "https://cdn.cloudflare.steamstatic.com";
-const heroList = "https://api.opendota.com/api/heroes";
+const heroList = "https://api.opendota.com/api/heroStats";
 const matchHistory = `https://api.opendota.com/api/players/${user}/matches`;
 
 
