@@ -19,7 +19,7 @@ h2_pic  = document.getElementById("h2_pic");
 
 // dash user stats general
 
-let user_name_main, tot_user_win, tot_user_lose, tot_user_wr, tot_user_match, kda_ratio, kda_0, kda_1, kda_2
+let user_name_main, tot_user_win, tot_user_lose, tot_user_wr, tot_user_match, kda_ratio, kda_0, kda_1, kda_2, info
 
 user_name_main = document.getElementById("user_name_main");
 tot_user_win = document.getElementById("tot_user_win");
@@ -33,4 +33,6 @@ kda_1 = document.getElementById("h1_kda")
 kda_2 = document.getElementById("h2_kda")
 info = document.getElementById("infoOrder")
 
+
+const filter_btm = document.getElementById("filters-btm")
 

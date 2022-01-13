@@ -3,14 +3,28 @@
 function MatchFilter(data, Minduration, leaver, ranked) {
   let newArr = [];
   
-  for (x of data) {
-    if (
-      x.duration > Minduration &&
-      x.leaver_status == leaver &&
-      x.lobby_type == ranked
-      )
-    {
-      newArr.push(x)
+  if (ranked == `all`){
+    for (x of data) {
+      if (
+        x.duration > Minduration &&
+        x.leaver_status == leaver
+        )
+      {
+        newArr.push(x)
+      }
+    }
+  }
+
+  else {
+    for (x of data) {
+      if (
+        x.duration > Minduration &&
+        x.leaver_status == leaver &&
+        x.lobby_type == ranked
+        )
+      {
+        newArr.push(x)
+      }
     }
   }
   return newArr
@@ -43,7 +57,7 @@ function WinAndLose(data){
 
 function UserHeroList(data, heros){
 
-  console.log(data[0])
+ 
 
   let simpleArr = []
 
@@ -108,7 +122,7 @@ function UserHeroList(data, heros){
 
   }
 
-  console.log(totalHeroInfo[0])
+
   return totalHeroInfo
 }
   
@@ -182,20 +196,26 @@ document.addEventListener("DOMContentLoaded", async function (e) {
   let newHeroList = (await getJSONData(`${heroList}`)).data
   let rawData = (await getJSONData(matchHistory)).data;
                                         //secs, quit?, type (7 = ranked, 0 = normi)
-  let dataFiltered = MatchFilter(rawData, 600, 0, 7);
+  let dataFiltered = MatchFilter(rawData,600, 0, `all`);
   
 
   // Get KDA RATIO 
   let kdaR = kdaRatio(dataFiltered);
   let kdaRAvg = kdaRatioAvg(JSON.parse(kdaR));
 
-  
   UserHeroList(rawData, newHeroList)
 
   total(dataFiltered, kdaRAvg);
   UserNme(nameUsr);
+
+  filter_btm.onclick = function(){
+    document.getElementById("mainDIV").classList.add("hidden")
+    
+  }
+
+
  
-  showTop3(UserHeroList(dataFiltered, newHeroList), `winrate`)
+  showTop3(UserHeroList(dataFiltered, newHeroList), `winrate`, 1)
 
  
 

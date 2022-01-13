@@ -2,14 +2,14 @@ function UserNme(data) {
     user_name_main.innerHTML = data.profile.personaname;
   }
 
-  function showTop3(data, order, azZa){
+  function showTop3(data, order, or){
     
     let dataFilteredByQty = []
 
     let h0_data, h1_data, h2_data 
 
     for (x of data){
-      if (x.count > 25){
+      if (x.count > 15){
         dataFilteredByQty.push(x)
       }
     }
@@ -17,7 +17,7 @@ function UserNme(data) {
     // order
     let sortedData = dataFilteredByQty.sort(function (a, b){
       
-      let or = 1
+      
       
       if (order == `count`){
         if (a.count > b.count) {
@@ -60,24 +60,16 @@ function UserNme(data) {
       
     })
 
-    function txtInfo(){
-      if (order == `count`){
-
-      }
-    }  
-    
-   
-
-
+    info.innerHTML = order
     
     kda_0.innerHTML = 'KDA: ' + (sortedData[2].kda).toFixed(2)
     kda_1.innerHTML = 'KDA: ' + (sortedData[0].kda).toFixed(2)
     kda_2.innerHTML = 'KDA: ' + (sortedData[1].kda).toFixed(2)
 
 
-    h0_Wr.innerHTML = ` ${(Number(sortedData[2].winrate)*100).toFixed(2)}% `
-    h1_Wr.innerHTML = ` ${(Number(sortedData[0].winrate)*100).toFixed(2)}%`
-    h2_Wr.innerHTML = ` ${(Number(sortedData[1].winrate)*100).toFixed(2)}%`
+    h0_Wr.innerHTML = ` ${(Number(sortedData[2].winrate)*100).toFixed(2)}% <br> Games: ${sortedData[2].count}`
+    h1_Wr.innerHTML = ` ${(Number(sortedData[0].winrate)*100).toFixed(2)}%<br> Games: ${sortedData[0].count}`
+    h2_Wr.innerHTML = ` ${(Number(sortedData[1].winrate)*100).toFixed(2)}% <br> Games: ${sortedData[1].count}`
 
     
     
