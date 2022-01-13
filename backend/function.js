@@ -1,27 +1,5 @@
 // no detecta la variable en el otro archivo
 
-
-
-function WinAndLose(data){
-    let sumLoses = 0
-    let sumWin = 0
-    for (x of data){
-      if (x.player_slot < 128 && x.radiant_win == 1){
-        sumWin ++
-      }
-      else if (x.player_slot >= 128 && x.radiant_win == 0){
-        sumWin ++
-      }
-      else {
-        sumLoses ++
-      }
-    }
-    let result = [sumLoses, sumWin]
-    return result
-}
-
-
-
 function MatchFilter(data, Minduration, leaver, ranked) {
   let newArr = [];
   
@@ -38,20 +16,40 @@ function MatchFilter(data, Minduration, leaver, ranked) {
   return newArr
 }
 
-
-function UserNme(data) {
-  user_name_main.innerHTML = data.profile.personaname;
+function winORlose(data){
+  
+  if (data.player_slot < 128 && data.radiant_win == 1){
+    return true
+  }
+  else if (data.player_slot >= 128 && data.radiant_win == 0){
+    return true
+  }
+  else {
+    return false
+  }
 }
 
+function WinAndLose(data){
+    let sumLoses = 0
+    let sumWin = 0
+    
+    for (x of data){
+      winORlose(x) ? sumWin++ : sumLoses++
+    }
+
+    let result = [sumLoses, sumWin]
+    return result
+}
 
 function UserHeroList(data, heros){
+
+  console.log(data[0])
 
   let simpleArr = []
 
   for (x of data){
     simpleArr.push(x.hero_id)
   }
-
 
   const counts = [];
 
@@ -67,23 +65,59 @@ function UserHeroList(data, heros){
           "count": counts[i] ? counts[i]: 0,
           "name": y.localized_name,
           "roles": y.roles,
-          "img": `${baseDota}${y.img}`
+          "img": `${baseDota}${y.img}`,
+          "winCount": "",
+          "winrate": "",
+          "kills": "",
+          "deaths": "",
+          "assists": "",
+          "kda": "",
+          "doom": ""
+
         })
       }
     }
   }
-  
+ 
+
+  for (x of totalHeroInfo){
+    
+    let wins = 0
+    let kills = 0
+    let deaths = 0
+    let assists = 0
+    
+    for (y of data){
+      if (y.hero_id == x.id) {
+        if (winORlose(y)){
+          wins ++
+        }
+        
+        kills += y.kills
+        deaths += y.deaths
+        assists += y.assists
+      }
+    }
+    x.winCount = wins
+    x.winrate = wins / x.count
+    x.kills = kills
+    x.deaths = deaths
+    x.assists = assists
+    x.kda = kda(kills, deaths, assists)
+    x.doom = x.kda / x.winrate
+
+  }
+
+  console.log(totalHeroInfo[0])
   return totalHeroInfo
 }
   
-
-
 function total(data, kda, mode) {
 
   let win = WinAndLose(data)[1]
   let lose = WinAndLose(data)[0]
  
-  tot_user_match.innerHTML = `Total Matchs: ` + data.length;
+  tot_user_match.innerHTML = `Total Matchs:  ` + data.length;
   tot_user_win.innerHTML = `Total Wins: ` + win;
   tot_user_lose.innerHTML = `Total Loses: ${lose} ` ;
   tot_user_wr.innerHTML =
@@ -94,39 +128,13 @@ function total(data, kda, mode) {
 }
 
 
-// SHOW ELELEMTNS
-
-function showTop3(data){
-  let sortedData = data.sort(function (a, b){
-    if (a.count > b.count) {
-      return -1
-    }
-    if (a.count < b.count )  {
-      return 1
-    }
-    return 0
-  })
-  
-  h0_Wr.innerHTML = ` ${sortedData[2].count}` 
-  h1_Wr.innerHTML = ` ${sortedData[0].count}` 
-  h2_Wr.innerHTML = ` ${sortedData[1].count}`
-
-  h0_name.innerHTML = sortedData[2].name
-  h1_name.innerHTML = sortedData[0].name
-  h2_name.innerHTML = sortedData[1].name  
-
-  h0_pic.style.backgroundImage = `url("${sortedData[2].img}")`;
-  h1_pic.style.backgroundImage = `url("${sortedData[0].img}")`;
-  h2_pic.style.backgroundImage = `url("${sortedData[1].img}")`;
+// ============= KDA RATIO ==========
+function kda(k, d, a) {
+  return (k + a) / (1 + d);
 }
-
 
 function kdaRatio(history, F_date, ranked) {
   let kdaH = [];
-
-  function kda(k, d, a) {
-    return (k + a) / (1 + d);
-  }
 
   for (x of history) {
     kdaH.push({
@@ -149,7 +157,8 @@ function kdaRatioAvg(kda_tot) {
   return Number(sum2);
 }
 
-function SpliteArr(chunk, arr) {
+
+/* function SpliteArr(chunk, arr) {
   let result = [];
   while (arr.length > 0) {
     let tempArray;
@@ -165,7 +174,7 @@ function movingAvg(data) {
     avg_moving.push(kdaRatioAvg(x));
   }
   return avg_moving;
-}
+} */
 
 document.addEventListener("DOMContentLoaded", async function (e) {
   
@@ -186,7 +195,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
   total(dataFiltered, kdaRAvg);
   UserNme(nameUsr);
  
-  showTop3(UserHeroList(dataFiltered, newHeroList))
+  showTop3(UserHeroList(dataFiltered, newHeroList), `winrate`)
 
  
 
