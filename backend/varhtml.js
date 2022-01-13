@@ -15,9 +15,11 @@ h1_pic  = document.getElementById("h1_pic");
 h2_pic  = document.getElementById("h2_pic");
 
 
+
+
 // dash user stats general
 
-let user_name_main, tot_user_win, tot_user_lose, tot_user_wr, tot_user_match;
+let user_name_main, tot_user_win, tot_user_lose, tot_user_wr, tot_user_match, kda_ratio
 
 user_name_main = document.getElementById("user_name_main");
 tot_user_win = document.getElementById("tot_user_win");
@@ -25,3 +27,5 @@ tot_user_lose = document.getElementById("tot_user_lose");
 tot_user_wr = document.getElementById("tot_user_wr");
 tot_user_match = document.getElementById("tot_user_match");
 users_play = document.getElementById("players")
+kda_ratio = document.getElementById("tot_user_kda")
+

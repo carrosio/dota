@@ -8,7 +8,7 @@ const colo = "163395256";
 const loco = "71567093";
 const dendi = '70388657'
 
-let user = renk;
+let user = loco;
 
 const baseURL = "https://api.opendota.com/api";
 const baseDota = "https://cdn.cloudflare.steamstatic.com";

@@ -1,3 +1,5 @@
+// no detecta la variable en el otro archivo
+
 
 
 function WinAndLose(data){
@@ -83,11 +85,12 @@ function total(data, kda, mode) {
  
   tot_user_match.innerHTML = `Total Matchs: ` + data.length;
   tot_user_win.innerHTML = `Total Wins: ` + win;
-  tot_user_lose.innerHTML = `Total Loses: ` + lose;
+  tot_user_lose.innerHTML = `Total Loses: ${lose} ` ;
   tot_user_wr.innerHTML =
     `Total Winrate: ` +
-    ((win / (win + lose)) * 100).toFixed(2) +
-    ` % KDA avg: ${kda}`;
+    ((win / (win + lose)) * 100).toFixed(2) + `%`
+  
+    kda_ratio.innerHTML = `KDA ratio Average*: ${kda}`
 }
 
 
@@ -104,9 +107,9 @@ function showTop3(data){
     return 0
   })
   
-  h0_Wr.innerHTML = sortedData[2].count
-  h1_Wr.innerHTML = sortedData[0].count 
-  h2_Wr.innerHTML = sortedData[1].count
+  h0_Wr.innerHTML = ` ${sortedData[2].count}` 
+  h1_Wr.innerHTML = ` ${sortedData[0].count}` 
+  h2_Wr.innerHTML = ` ${sortedData[1].count}`
 
   h0_name.innerHTML = sortedData[2].name
   h1_name.innerHTML = sortedData[0].name
@@ -165,18 +168,18 @@ function movingAvg(data) {
 }
 
 document.addEventListener("DOMContentLoaded", async function (e) {
+  
   let nameUsr = (await getJSONData(`${baseURL}/players/${user}`)).data;
   let newHeroList = (await getJSONData(`${heroList}`)).data
   let rawData = (await getJSONData(matchHistory)).data;
+                                        //secs, quit?, type (7 = ranked, 0 = normi)
   let dataFiltered = MatchFilter(rawData, 600, 0, 7);
-  /* console.log(dataFiltered[0]) */
-
+  
 
   // Get KDA RATIO 
   let kdaR = kdaRatio(dataFiltered);
   let kdaRAvg = kdaRatioAvg(JSON.parse(kdaR));
 
-  /* console.log(SpliteArr(100,JSON.parse(kdaR))) */
   
   UserHeroList(rawData, newHeroList)
 

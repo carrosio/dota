@@ -5,62 +5,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <title>DotaPI</title>
   </head>
 
-  <body class="bg-zinc-700 h-screen w-full p-5">
-    
-    <div
-      class="text-zinc-200 shadow-2xl bg-zinc-800 font-mono font-black h-1/2 flex flex-col p-0 max-w-3xl min-w-fit"
+  <body class="bg-zinc-900 bh-screen text-zinc-50 w-full p-5">
+   
+    <div name= "mainDIV"
+      class="text-zinc-200 border border-red-700 shadow- shadow-red-900 bg-zinc-800 font-mono font-black h-2/3 flex max-w-2xl flex-col p-0  "
     >
-        <div class="">Ranked</div>
-      <div class="text-center text-zinc-100 w-full h-2/3 bg-zinc-00 flex">
-        <div class="flex flex-col bg-zinc-500 w-1/3">
-          <div id="h0_name">Loading...</div>
-          <div id="h0_pic" class="w-full h-full bg-no-repeat bg-center"></div>
-          <div id="h0_Wr">Loading...</div>
+      <div class="p-5 bg-slate-800 text-center  text-xl">Most played heros</div>
+     
+      <div class="text-center text-zinc-100 w-full h-fit bg-zinc-00 flex">
+       
+        <div class="flex flex-col w-1/3">
+         
+          <div class="bg-zinc-900" id="h0_name">Loading...</div>
+          <div id="h0_pic" class="h-28 bg-no-repeat bg-center">
+            
+          </div>
+          <div class=" text-center p-1 text-xl"  id="h0_Wr">Loading...</div>
         </div>
 
-        <div class="flex flex-col bg-red-900 w-1/3">
-          <div id="h1_name">Loading...</div>
-          <div id="h1_pic" class="w-full h-full bg-no-repeat bg-center"></div>
-          <div class="flex mx-auto">
-            <div id="h1_Wr">Loading...</div>
+        <div class="flex flex-col w-1/3">
+          <div class="bg-red-900 ""  id="h1_name">Loading...</div>
+          <div id="h1_pic" class="h-28 bg-no-repeat bg-center"></div>
+          <div class=" bg-red-800 w-full ">
+            <div class="text-center p-1 text-xl" id="h1_Wr">Loading...</div>
           </div>
         </div>
-        <div class="flex flex-col bg-zinc-600 w-1/3">
-          <div id="h2_name">Loading...</div>
-          <div id="h2_pic" class="w-full h-full bg-no-repeat bg-center"></div>
-          <div id="h2_Wr">Loading...</div>
+        
+        <div class="flex flex-col w-1/3">
+          <div class="bg-slate-700 " id="h2_name">Loading...</div>
+          <div id="h2_pic" class="h-28 bg-no-repeat bg-center">  
+          </div>
+          <div class="bg-slate-600 text-center p-1 text-xl"  id="h2_Wr">Loading...</div>
         </div>
       </div>
 
-      <div class="w-full bg-zinc-900 mx-auto font-black p-10 pt-5">
+      <div class="w-full border-zinc-500 mx-auto shadow-2xl font-black p-10 pt-10">
         <div
           id="user_name_main"
-          class="p-5 font-extrabold text-3xl text-center"
+          class="p-5 font-extrabold bg-red-900  text-3xl text-center"
         >
           <Loading class="">Loading...</Loading>
         </div>
-        <div id="tot_user_match" class="flex"><span class=""></span></div>
-        <div id="tot_user_win" class="flex">Loading...</div>
-        <div id="tot_user_lose" class="flex">Loading...</div>
-        <div id="tot_user_wr" class="flex">Loading...</div>
-        <div id="tot_user_kda" class="flex">Loading...</div>
+        <div id="tot_user_match" class="bg-slate-900 p-2 flex"><span class=""></span></div>
+        <div id="tot_user_win" class="bg-slate-700 p-2 flex">Loading...</div>
+        <div id="tot_user_lose" class="bg-slate-900 p-2 flex">Loading...</div>
+        <div id="tot_user_wr" class="bg-slate-700 p-2 flex">Loading...</div>
+        <div id="tot_user_kda" class="bg-slate-900 p-2 flex">Loading...</div>
       </div>
 
-      <!-- label for="pl">Player:</label>
-        <select id="players" name="players">
-          <option selected value="me">Me</option>
-          <option value="renk">renk</option>
-          <option value="barrio">Barrio</option>
-          <option value="loco">Loco</option>
-        </select> -->
+      <button class="bg-red-900 p-3" > Change</button>
+      
     </div>
 
-    <div></div>
+    <!-- <div class="w-1/3 bg-red-900 h-screen"></div> -->
+    
 
     <script src="/dota2/backend/api.js"></script>
     <script src="/dota2/backend/function.js"></script>
+    <script src="/dota2/backend/varhtml.js"></script>
   </body>
 </html>
